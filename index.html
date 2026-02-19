@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<style>
+    button{
+        background-color: #0000007c;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    button:hover{
+        background-color: #9956567c;
+        color: #0000007c;
+    }
+</style>
 <body>
-    <h3 id="text"></h3>
-    <button id="btn" name="btn">click</button>
-    <button id="btnl" name="btnl">delete</button>
-    <button id="btn1" name="btn1">hola</button>
+    <center>
+        <button id="btn" name="btn">click</button>
+        <button id="btn1" name="btn1">hola</button>
+    </center>
 
     <script>
         let btn = document.getElementById('btn');
@@ -22,20 +36,46 @@
         let hh = [
             `Entender los memes de programacion
             no te hacen programador`,
-            `si el codigo funciona no lo toques`
+            `si el codigo funciona no lo toques`,
+            `Usuario no es gente`,
+            `PHP acabo con mi vida`,
+            `Eres un error de capa 8`
         ];
 
         btn.addEventListener('click', ()=>{
-            text.textContent = 'hola Crack';
-        });
-        btnlim.addEventListener('click', ()=>{
-            text.textContent = "";
+            Swal.fire({
+                title: '¡Éxito!',
+                text: 'hola crack',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            });
         });
 
-        btnfrace.addEventListener('click',()=>{
-            for(let i = 0; i < hh.length; i++){
-                alert(hh[i]);
+        btnfrace.addEventListener('click', ()=>{
+            // Mostrar las frases una por una con alertas modernas
+            let index = 0;
+            
+            function mostrarSiguienteFrase() {
+                if (index < hh.length) {
+                    Swal.fire({
+                        title: 'Frase ' + (index + 1),
+                        text: hh[index],
+                        icon: 'info',
+                        confirmButtonText: 'Siguiente',
+                        confirmButtonColor: '#3085d6',
+                        showCancelButton: index === 0 ? false : true,
+                        cancelButtonText: 'Cerrar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            index++;
+                            mostrarSiguienteFrase();
+                        }
+                    });
+                }
             }
+            
+            mostrarSiguienteFrase();
         });
     </script>
 </body>
